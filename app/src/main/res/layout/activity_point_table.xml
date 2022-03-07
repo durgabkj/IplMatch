@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PointTableActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mtPtsToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="@color/teal_200"
+            app:titleTextColor="#3A5555"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:title="Ranking of Teams"
+            app:titleCentered="true" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_no_data_PointTable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+       >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=" Data Not Found" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_analytic" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llRanking"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:padding="10dp">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:layout_marginTop="20dp"
+            android:padding="8dp">
+
+            <!--            <TableLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content">-->
+
+            <!--                <TableRow-->
+            <!--                    android:layout_height="60dp"-->
+            <!--                    android:background="@drawable/border"-->
+            <!--                    android:clipToOutline="true">-->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Teams"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.3"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Match"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Win"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Loss"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Tied"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Point"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="NRR"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+
+            <!--                </TableRow>-->
+
+            <!--            </TableLayout>-->
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/srlRecycleViewPointTable"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPointTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

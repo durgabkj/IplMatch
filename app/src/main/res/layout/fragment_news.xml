@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.News">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:background="#F6F3F3"
+       >
+       <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+           android:id="@+id/srlRecycleView"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="1">
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rvNews"
+               android:layout_width="match_parent"
+               android:layout_height="650dp" />
+
+       </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+       <LinearLayout
+           android:id="@+id/banner_container_News"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="bottom"
+           android:orientation="vertical" />
+
+
+   </LinearLayout>
+
+
+</FrameLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".NewsDetails">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvNewsDetail"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivNewsImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:transitionName="tnBlogImage"
+                    android:background="@color/white"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:id="@+id/ivNewsDetailsBack"
+                    android:layout_width="21dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_baseline_arrow_back_24" />
+
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNewsDetailTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:maxLines="2"
+                android:layout_marginTop="8dp"
+                android:transitionName="tnNewsTitle"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+
+
+            <TextView
+                android:id="@+id/tvNewsDetailDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_twotone_calendar_today_24"
+                android:drawablePadding="5dp"
+                android:transitionName="tnNewsDate"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvNewsDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="15dp"
+                android:textColor="#A1000000"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical" />
+</LinearLayout>

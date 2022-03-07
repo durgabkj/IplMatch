@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DescriptionActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mtDescriptionToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:title="Description"
+            app:titleTextColor="#3A5555"
+            android:backgroundTint="@color/teal_200"
+            app:titleCentered="true" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:text="hiii"
+        android:padding="10dp"
+        android:textColor="#B5000000"
+        android:textSize="17dp"
+        android:fontFamily="sans-serif-light"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

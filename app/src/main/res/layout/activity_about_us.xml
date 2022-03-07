@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".About_us"
+    android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/mtAboutUsToolBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:backgroundTint="@color/teal_200"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+               app:title="About Us" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:padding="20dp"
+        android:textSize="15dp"
+        android:textColor="#B4000000"
+        android:fontFamily="sans-serif-light"
+        android:text="Cricket Web is a well-established cricket site that attracts a global following.
+
+Cricket Web boasts one of the busiest cricketing communities on the web with a hugely popular discussion forum with close to 25,000 members and well over 3 million posts along with our free cricket games attracting over 150,000 members so far.
+
+We also have the largest collection of cricket book reviews on the internet, and have many full featured blog articles that are regularly added for your reading pleasure.
+
+Along with this we have a fully featured Gaming section a Cricket Stats section to rival any other.
+
+Start exploring and enjoy what we have on offer.
+
+If you wish to read our old news coverage, "
+        />
+
+</LinearLayout>
