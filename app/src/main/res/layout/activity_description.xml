@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DescriptionActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".DescriptionActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -16,21 +16,65 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:backgroundTint="@color/teal_200"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
             app:title="Description"
-            app:titleTextColor="#3A5555"
-            android:backgroundTint="@color/teal_200"
-            app:titleCentered="true" />
+            app:titleCentered="true"
+            app:titleTextColor="#3A5555" />
     </com.google.android.material.appbar.AppBarLayout>
+
+
+        <ImageView
+            android:id="@+id/ivDescriptionTeamLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+           />
+
+
+    <TextView
+        android:id="@+id/tvTeamNameDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-light"
+        android:textColor="#494747"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/bottom_rounded_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+     android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="#A4000000"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:text="Description:-"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"/>
+<!--    <View-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="2dp"/>-->
 
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="match_parent"
-        android:text="hiii"
-        android:padding="10dp"
-        android:textColor="#B5000000"
-        android:textSize="17dp"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
-        android:layout_height="wrap_content"/>
+        android:padding="10dp"
+        android:text="hiii"
+        android:textColor="#B5000000"
+        android:textSize="17dp" />
 
 </LinearLayout>
