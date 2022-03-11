@@ -117,12 +117,11 @@ LinearLayout llRanking,ll_no_data_PointTable;
 
         if (adapter.getItemCount() != 0) {
             rvPointTable.setAdapter(adapter);
-            ll_no_data_PointTable.setVisibility(View.GONE);
             rvPointTable.setVisibility(View.VISIBLE);
             llRanking.setVisibility(View.VISIBLE);
 
         } else {
-
+            ll_no_data_PointTable.setVisibility(View.VISIBLE);
             ll_no_data_PointTable.setVisibility(View.VISIBLE);
 
         }

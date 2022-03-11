@@ -130,11 +130,10 @@ public class MatchPlayedActivity extends AppCompatActivity {
 
         if  (adapter.getItemCount() != 0){
             rvMatchPlayed.setAdapter(adapter);
-            ll_no_data_MatchPlayed.setVisibility(View.GONE);
            rvMatchPlayed.setVisibility(View.VISIBLE);
 
         } else {
-
+            ll_no_data_MatchPlayed.setVisibility(View.VISIBLE);
             ll_no_data_MatchPlayed.setVisibility(View.VISIBLE);
 
         }

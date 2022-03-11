@@ -5,4 +5,5 @@ public class PlayerModel {
     public  String player_name;
     public String team_id;
    public  String team_name;
+   public String status;
 }

@@ -2,6 +2,8 @@ package com.match.iplHub;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +20,9 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 import com.match.iplHub.Model.MatchModel;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.MyViewHolder> {
     List<MatchModel> list;
@@ -40,7 +44,7 @@ public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onBindViewHolder(@NonNull Today_MatchAdapter.MyViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         final MatchModel model = list.get(i);
 
             holder.tvTodayMatchTitle.setText("Indian Premier League " + model.id + " Match");
@@ -61,6 +65,18 @@ public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.
                     .load(model.team2.team_logo)
                     .into(holder.ivTodayMatchImageTeam2);
 
+        long date= Calendar.getInstance().getTimeInMillis();
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String date1=DateFormat.format(date);
+
+
+        if ((Utils.getDate(model.date).compareTo(date1)==0) && (model.live.equals("1"))) {
+            holder.tvLiveTodayMatch.setText("Live");
+            holder.tvLiveTodayMatch.setVisibility(View.VISIBLE);
+            holder.tvLiveTodayMatch.setBackgroundColor(Color.parseColor("#db4035"));
+        } else {
+            holder.tvLiveTodayMatch.setVisibility(View.GONE);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -84,7 +100,7 @@ public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTodayMatchTitle, tvTodayMatchDate, tvTodayMatchTime, tvTodayMatchLocation, tvTodayMatchTeamName1, tvTodayMatchTeamName2;
+        TextView tvTodayMatchTitle, tvTodayMatchDate, tvTodayMatchTime, tvTodayMatchLocation, tvTodayMatchTeamName1, tvTodayMatchTeamName2,tvLiveTodayMatch;
         ImageView ivTodayMatchImageTeam1, ivTodayMatchImageTeam2;
         MaterialCardView mcvTodayMatch;
 
@@ -100,6 +116,7 @@ public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.
             tvTodayMatchTeamName2 = itemView.findViewById(R.id.tvTodayMatchTeamName2);
             tvTodayMatchLocation = itemView.findViewById(R.id.tvTodayMatchLocation);
             mcvTodayMatch = itemView.findViewById(R.id.mcvTodayMatch);
+            tvLiveTodayMatch=itemView.findViewById(R.id.tvLiveTodayMatch);
         }
 
 

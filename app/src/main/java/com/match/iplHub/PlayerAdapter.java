@@ -38,8 +38,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         final PlayerModel model = list.get(i);
-
-        holder.tvTeamName_player.setText(model.player_name);
+if(model.status.equals("1"))
+{
+    holder.tvTeamName_player.setText(model.player_name);
+}
     }
 
     @Override

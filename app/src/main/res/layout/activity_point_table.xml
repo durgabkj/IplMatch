@@ -27,6 +27,7 @@
     <LinearLayout
         android:id="@+id/ll_no_data_PointTable"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"

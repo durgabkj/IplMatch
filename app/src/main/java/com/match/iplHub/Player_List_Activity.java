@@ -1,6 +1,7 @@
 package com.match.iplHub;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,7 +57,7 @@ public class Player_List_Activity extends AppCompatActivity {
         getData(id,id1);
 
         AudienceNetworkAds.initialize(this);
-        interstitialAd = new InterstitialAd(this, "IMG_16_9_APP_INSTALL#1065267967364028_1065619153995576");
+        interstitialAd = new InterstitialAd(this, "1065267967364028_1065619153995576");
         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
             @Override
             public void onInterstitialDisplayed(Ad ad) {
@@ -189,7 +190,7 @@ public class Player_List_Activity extends AppCompatActivity {
     }
 
     private void setRecyclerView() {
-        //  GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
+         // GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         idRVPlayer.setLayoutManager(layoutManager);

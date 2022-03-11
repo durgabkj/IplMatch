@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcv_Match_played"
@@ -16,116 +15,175 @@
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
 
-
         <LinearLayout
-            android:id="@+id/llMatch_Played_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/llMatch_Played_item"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:padding="5dp">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="80dp"
-                    app:cardElevation="5dp">
+                    android:layout_weight=".7"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="80dp"
+                        app:cardElevation="5dp">
 
 
-                    <ImageView
-                        android:id="@+id/ivMatchPlayedImageTeam1"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        <ImageView
+                            android:id="@+id/ivMatchPlayedImageTeam1"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center"
+                            android:background="@color/white"
+                            android:elevation="8dp"
+                            android:scaleType="centerCrop" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvMatchPlayedTeamName1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@color/white"
-                        android:elevation="8dp"
-                        android:scaleType="centerCrop" />
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
 
-                </com.google.android.material.card.MaterialCardView>
+                        />
 
-                <TextView
-                    android:id="@+id/tvMatchPlayedTeamName1"
+                    <TextView
+                        android:id="@+id/tvScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:layout_gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvMatchName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:text="Indian Premier League"
+                        android:textColor="@color/black"
+                        android:visibility="gone"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                    />
+                    <TextView
+                        android:id="@+id/tvMatchPlayedRun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tvScore"
-                    android:layout_width="wrap_content"
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:layout_weight=".7"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="80dp"
+                        app:cardElevation="5dp">
 
+
+                        <ImageView
+                            android:id="@+id/ivMatchPlayedImageTeam2"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@color/white"
+                            android:elevation="8dp"
+                            android:scaleType="centerCrop" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvMatchPlayedTeamName2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvScore1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+               android:textSize="11sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+
+
+                        />
+
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tvMatchPlayedRun"
-                android:layout_width="0dp"
+                android:id="@+id/tvMatchPlayedLocation"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tvMatchPlayedUpcoming"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:visibility="gone"
+                android:textColor="#70000000"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="80dp"
-                    app:cardElevation="5dp">
-
-
-                    <ImageView
-                        android:id="@+id/ivMatchPlayedImageTeam2"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:background="@color/white"
-                        android:elevation="8dp"
-                        android:scaleType="centerCrop" />
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <TextView
-                    android:id="@+id/tvMatchPlayedTeamName2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-
-                    />
-
-                <TextView
-                    android:id="@+id/tvScore1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-
-
-                    />
-
-            </LinearLayout>
         </LinearLayout>
+
+
     </com.google.android.material.card.MaterialCardView>
+
 
 </LinearLayout>

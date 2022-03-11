@@ -14,7 +14,23 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="8dp"
         app:cardElevation="1dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:elevation="20dp">
 
+        <TextView
+            android:id="@+id/tvLiveTodayMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Live"
+            android:paddingVertical="2dp"
+            android:paddingHorizontal="5dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -182,6 +198,7 @@
 
                     />
             </LinearLayout>
+        </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
