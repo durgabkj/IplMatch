@@ -18,20 +18,19 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:backgroundTint="@color/teal_200"
-            app:titleTextColor="#3A5555"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
             app:title="Ranking of Teams"
-            app:titleCentered="true" />
+            app:titleCentered="true"
+            app:titleTextColor="#3A5555" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/ll_no_data_PointTable"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-       >
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
@@ -51,15 +50,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:visibility="gone">
 
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border"
             android:layout_marginTop="20dp"
+            android:background="@drawable/border"
             android:padding="8dp">
 
             <!--            <TableLayout-->

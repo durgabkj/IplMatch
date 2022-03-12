@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="170dp"
     android:gravity="bottom"
@@ -20,25 +19,25 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/logo"/>
+            android:background="@drawable/logo" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
             android:text="Welcome !!"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="?attr/colorPrimary"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Indian Premier League (2022)"
-            android:textColor="?attr/colorPrimary"
             android:layout_marginBottom="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+            android:text="Indian Premier League (2022)"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="?attr/colorPrimary" />
 
     </LinearLayout>
 
@@ -46,6 +45,5 @@
         android:id="@+id/bottom_rounded_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/teal_200"
-        />
+        android:background="@color/teal_200" />
 </LinearLayout>

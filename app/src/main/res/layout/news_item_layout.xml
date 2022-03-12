@@ -46,11 +46,11 @@
                     android:id="@+id/tvNewsTitle"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
+                    android:fontFamily="serif"
                     android:maxLines="1"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:fontFamily="serif"
                     android:textStyle="bold" />
 
                 <TextView
@@ -58,8 +58,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:maxLines="2"
                     android:fontFamily="serif"
+                    android:maxLines="2"
                     android:text=""
                     android:textSize="14sp"
                     android:textStyle="bold" />

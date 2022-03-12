@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
-    <item
-        android:id="@+id/nav_Teams"
-        android:icon="@drawable/ic_baseline_people_alt_24"
-        android:title="Teams"
-        app:showAsAction="never"/>
+        <item
+            android:id="@+id/nav_Teams"
+            android:icon="@drawable/ic_baseline_people_alt_24"
+            android:title="Teams"
+            app:showAsAction="never" />
 
-    <item
-        android:id="@+id/nav_PointTable"
-        android:icon="@drawable/ic_baseline_table_chart_24"
-        android:title="Point Table" />
+        <item
+            android:id="@+id/nav_PointTable"
+            android:icon="@drawable/ic_baseline_table_chart_24"
+            android:title="Point Table" />
 
 
     </group>
@@ -35,8 +35,7 @@
                 <item
                     android:id="@+id/mnuShare"
                     android:icon="@drawable/ic_baseline_share_24"
-                    android:title="Share"
-                   />
+                    android:title="Share" />
 
             </menu>
         </item>

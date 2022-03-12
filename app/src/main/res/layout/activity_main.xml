@@ -52,15 +52,13 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-            <androidx.viewpager.widget.ViewPager
+        <androidx.viewpager.widget.ViewPager
 
-                android:id="@+id/vpMatch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/ablMatch"
-                tools:ignore="NotSibling" />
-
-
+            android:id="@+id/vpMatch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ablMatch"
+            tools:ignore="NotSibling" />
 
 
     </RelativeLayout>

@@ -16,27 +16,28 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="8dp"
         app:cardElevation="1dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="vertical"
-            android:elevation="20dp">
+            android:elevation="20dp"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tvLive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Live"
-                android:paddingVertical="2dp"
                 android:paddingHorizontal="10dp"
+                android:paddingVertical="2dp"
+                android:text="Live"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dp"
-               >
+                android:padding="3dp">
 
 
                 <LinearLayout
@@ -60,7 +61,7 @@
                             android:layout_gravity="center"
                             android:background="@color/white"
                             android:elevation="8dp"
-                            android:scaleType="centerCrop"/>
+                            android:scaleType="centerCrop" />
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -81,17 +82,17 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvIplTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                       android:layout_gravity="center"
+                        android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:maxLines="1"
                         android:text=""
@@ -116,9 +117,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="3dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
-                        android:layout_marginTop="3dp"
                         android:orientation="horizontal">
 
                         <TextView

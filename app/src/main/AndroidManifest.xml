@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.match.iplHub">
+    package="com.ottego.iplHub">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IplMatch"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.match.iplHub.DescriptionActivity"></activity>
-        <activity android:name="com.match.iplHub.About_us" />
-        <activity android:name="com.match.iplHub.Player_List_Activity" />
-        <activity android:name="com.match.iplHub.PointTableActivity" />
-        <activity android:name="com.match.iplHub.MatchPlayedActivity" />
-        <activity android:name="com.match.iplHub.TeamActivity" />
-        <activity android:name="com.match.iplHub.NewsDetails" />
-        <activity android:name="com.match.iplHub.MainActivity" />
+        <activity android:name="com.ottego.iplHub.DescriptionActivity"></activity>
+        <activity android:name="com.ottego.iplHub.About_us" />
+        <activity android:name="com.ottego.iplHub.Player_List_Activity" />
+        <activity android:name="com.ottego.iplHub.PointTableActivity" />
+        <activity android:name="com.ottego.iplHub.MatchPlayedActivity" />
+        <activity android:name="com.ottego.iplHub.TeamActivity" />
+        <activity android:name="com.ottego.iplHub.NewsDetails" />
+        <activity android:name="com.ottego.iplHub.MainActivity" />
         <activity
-            android:name="com.match.iplHub.SplashScreen"
+            android:name="com.ottego.iplHub.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -51,9 +51,9 @@
             android:ellipsize="end"
             android:fontFamily="serif"
             android:padding="5dp"
-            android:textColor="@color/black"
             android:singleLine="true"
-            android:text="sNo" />
+            android:text="sNo"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tvMatches"
