@@ -19,6 +19,7 @@
             android:background="@color/white"
             android:backgroundTint="@color/teal_200"
             app:title="No Records"
+            app:titleTextColor="@color/white"
             app:titleCentered="true" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -62,6 +63,14 @@
                 android:visibility="gone" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/llBannerMatchPlayed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
     </LinearLayout>
+
 
 </LinearLayout>

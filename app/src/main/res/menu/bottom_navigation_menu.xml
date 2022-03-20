@@ -7,35 +7,63 @@
             android:id="@+id/nav_Teams"
             android:icon="@drawable/ic_baseline_people_alt_24"
             android:title="Teams"
+            app:itemTextColor="@color/black"
             app:showAsAction="never" />
 
         <item
             android:id="@+id/nav_PointTable"
+
             android:icon="@drawable/ic_baseline_table_chart_24"
-            android:title="Point Table" />
+            android:title="Point Table"
+            app:itemTextColor="@color/black" />
+
+        <item
+            android:id="@+id/nav_AllPlayedMatch"
+
+            android:icon="@drawable/cricket_icon"
+            android:title="All played match"
+            app:itemTextColor="@color/black" />
 
 
     </group>
 
     <group android:checkableBehavior="single">
 
-        <item android:title="Communication">
+        <item
+            android:title="Communication"
+
+            app:itemTextColor="@color/black">
+
             <menu>
+
+                <item
+                    android:id="@+id/nav_about"
+
+                    android:icon="@drawable/ic_baseline_speaker_notes_24"
+                    android:title="About us"
+                    app:itemTextColor="@color/black" />
 
                 <item
                     android:id="@+id/nav_rating"
                     android:icon="@drawable/ic_baseline_star_rate_24"
-                    android:title="Rating" />
+                    android:title="Rating"
+                    app:itemTextColor="@color/black" />
 
-                <item
-                    android:id="@+id/nav_about"
-                    android:icon="@drawable/ic_baseline_speaker_notes_24"
-                    android:title="About us" />
+
 
                 <item
                     android:id="@+id/mnuShare"
+
                     android:icon="@drawable/ic_baseline_share_24"
-                    android:title="Share" />
+                    android:title="Share"
+                    app:itemTextColor="@color/black" />
+
+                <item
+                    android:id="@+id/mnuFeedBack"
+
+                    android:icon="@drawable/ic_baseline_feedback_24"
+                    android:title="FeedBack"
+                    app:itemTextColor="@color/black" />
 
             </menu>
         </item>

@@ -16,9 +16,10 @@ public class DataModelPlayer {
     public TeamItemModel getTeam1() {
         List<PlayerModel> t1 = new ArrayList<>();
         for (PlayerModel p : player) {
-            if (p.team_id.equalsIgnoreCase(teamid1)) {
+            if (p.team_id.equalsIgnoreCase(teamid1) && p.status.equals("1")) {
                 t1.add(p);
             }
+
         }
 
         TeamItemModel ta = new TeamItemModel(teamid1, t1.get(0).team_name, t1);
@@ -28,9 +29,10 @@ public class DataModelPlayer {
     public TeamItemModel getTeam2() {
         List<PlayerModel> t2 = new ArrayList<>();
         for (PlayerModel p : player) {
-            if (p.team_id.equalsIgnoreCase(teamid2)) {
+            if (p.team_id.equalsIgnoreCase(teamid2) && p.status.equals("1")) {
                 t2.add(p);
             }
+
         }
         TeamItemModel tb = new TeamItemModel(teamid2, t2.get(0).team_name, t2);
         return tb;
@@ -44,9 +46,5 @@ public class DataModelPlayer {
 
         Log.e("parsedResponse", new Gson().toJson(list));
         return list;
-
-
     }
-
-
 }

@@ -15,12 +15,11 @@
             android:id="@+id/mtDescriptionToolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:backgroundTint="@color/teal_200"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
             app:title="Description"
             app:titleCentered="true"
-            app:titleTextColor="#3A5555" />
+            app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -74,5 +73,12 @@
         android:text="hiii"
         android:textColor="#B5000000"
         android:textSize="17dp" />
+
+    <LinearLayout
+        android:id="@+id/banner_containerDescription"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="bottom"
+        android:orientation="vertical" />
 
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.ottego.iplHub.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +20,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
+import com.facebook.ads.AudienceNetworkAds;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
 import com.google.gson.Gson;
 import com.ottego.iplHub.Model.DataModelNews;
 import com.ottego.iplHub.MySingleton;
@@ -44,10 +50,12 @@ public class News extends Fragment {
     RecyclerView rvNews;
     LinearLayout banner_container_News;
     SwipeRefreshLayout srlRecycleView;
+
+
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     public News() {
         // Required empty public constructor
     }
@@ -84,9 +92,11 @@ public class News extends Fragment {
         listener();
         getData("");
 
+
+
         banner_container_News = view.findViewById(R.id.banner_container_News);
         //  AudienceNetworkAds.initialize(this);
-        adView = new AdView(getContext(), "IMG_16_9_APP_INSTALL#1065267967364028_1065269514030540", AdSize.BANNER_HEIGHT_50);
+        adView = new AdView(getContext(), "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
 
 
 // Add the ad view to your activity layout
@@ -97,7 +107,6 @@ public class News extends Fragment {
         return view;
 
     }
-
 
     private void listener() {
 
@@ -119,12 +128,12 @@ public class News extends Fragment {
     }
 
     public void getData(String id) {
-        final ProgressDialog progressDialog = ProgressDialog.show(getContext(), null, "processing...", false, false);
+       // final ProgressDialog progressDialog = ProgressDialog.show(getContext(), null, "processing...", false, false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 srlRecycleView.setRefreshing(false);
-                progressDialog.dismiss();
+              //  progressDialog.dismiss();
                 Log.e("response", response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -146,7 +155,7 @@ public class News extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
+                       // progressDialog.dismiss();
                         error.printStackTrace();
                         srlRecycleView.setRefreshing(false);
                         Toast.makeText(getActivity(), "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show();

@@ -15,8 +15,8 @@
             android:id="@+id/mtAboutUsToolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:backgroundTint="@color/teal_200"
+            app:titleTextColor="@color/white"
+
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
             app:title="About Us" />
     </com.google.android.material.appbar.AppBarLayout>
@@ -26,18 +26,17 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
         android:padding="20dp"
-        android:text="Cricket Web is a well-established cricket site that attracts a global following.
-
-Cricket Web boasts one of the busiest cricketing communities on the web with a hugely popular discussion forum with close to 25,000 members and well over 3 million posts along with our free cricket games attracting over 150,000 members so far.
-
-We also have the largest collection of cricket book reviews on the internet, and have many full featured blog articles that are regularly added for your reading pleasure.
-
-Along with this we have a fully featured Gaming section a Cricket Stats section to rival any other.
-
-Start exploring and enjoy what we have on offer.
-
-If you wish to read our old news coverage, "
+        android:text="Ipl Hub work to provide you with fast,reliable and accurate cricket updates of all match,news.\n\n
+Ipl Hub is a specialist match company that produces news, Today Match and Teams and Team description content for Ipl Hub."
         android:textColor="#B4000000"
         android:textSize="15dp" />
+
+
+    <LinearLayout
+        android:id="@+id/banner_containerAbout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="bottom"
+        android:orientation="vertical" />
 
 </LinearLayout>

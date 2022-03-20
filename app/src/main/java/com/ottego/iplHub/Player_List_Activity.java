@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.facebook.ads.AudienceNetworkAds;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
@@ -38,7 +41,8 @@ public class Player_List_Activity extends AppCompatActivity {
     String id1 = "";
 
     private InterstitialAd interstitialAd;
-
+    LinearLayout banner_containerPlayerList;
+    AdView adView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +59,12 @@ public class Player_List_Activity extends AppCompatActivity {
         //listener();
         getData(id, id1);
 
+
+
+
+
         AudienceNetworkAds.initialize(this);
-        interstitialAd = new InterstitialAd(this, "1065267967364028_1065619153995576");
+        interstitialAd = new InterstitialAd(this, "293876256047333_294753515959607");
         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
             @Override
             public void onInterstitialDisplayed(Ad ad) {
@@ -104,6 +112,20 @@ public class Player_List_Activity extends AppCompatActivity {
                 interstitialAd.buildLoadAdConfig()
                         .withAdListener(interstitialAdListener)
                         .build());
+
+        // Find the Ad Container
+        banner_containerPlayerList = findViewById(R.id.banner_containerPlayerList);
+        //  AudienceNetworkAds.initialize(this);
+        adView = new AdView(context, "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
+
+
+// Add the ad view to your activity layout
+        banner_containerPlayerList.addView(adView);
+
+// Request an ad
+        adView.loadAd();
+        return ;
+
     }
 
 
@@ -134,11 +156,15 @@ public class Player_List_Activity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        if (interstitialAd != null) {
+    public void onDestroy() {
+        if (adView != null){
+            adView.destroy();
+        }
+        else if (interstitialAd != null) {
             interstitialAd.destroy();
         }
         super.onDestroy();
+
     }
 
 

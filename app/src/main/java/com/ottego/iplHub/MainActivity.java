@@ -2,6 +2,7 @@ package com.ottego.iplHub;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -99,6 +100,27 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     dlMainActivity.closeDrawer(GravityCompat.START);
                     return true;
+                }else if(id==R.id.nav_AllPlayedMatch) {
+                    Intent intent = new Intent(context, AllMatchPlayed.class);
+                    startActivity(intent);
+                    dlMainActivity.closeDrawer(GravityCompat.START);
+                    return true;
+                }else if(id==R.id.mnuFeedBack)
+                {
+                    Intent intent = new Intent(context, FeedBack.class);
+                    startActivity(intent);
+                    dlMainActivity.closeDrawer(GravityCompat.START);
+                    return true;
+                }else if(id==R.id.nav_rating) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ottego.iplmatch"));
+                    try{
+                        startActivity(intent);
+                    }
+                    catch(Exception e){
+                        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ottego.iplmatch"));
+                    }
+
                 } else if (id == R.id.mnuShare) {
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");

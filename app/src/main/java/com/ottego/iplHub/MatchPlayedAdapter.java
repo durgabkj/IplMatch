@@ -65,6 +65,7 @@ public class MatchPlayedAdapter extends RecyclerView.Adapter<MatchPlayedAdapter.
                     .into(holder.ivMatchPlayedImageTeam2);
         }
 
+
         // Team name define......
         if (model.team2.id.equals(id)) {
             Glide.with(holder.ivMatchPlayedImageTeam1)
@@ -77,7 +78,7 @@ public class MatchPlayedAdapter extends RecyclerView.Adapter<MatchPlayedAdapter.
         }
 
         //Item Background.....
-        if (model.win != null) {
+        if (model.win!= null) {
             if (model.win.id.equals(id)) {
                 holder.tvMatchPlayedRun.setTextColor(Color.parseColor("#62bf69"));
                 //   holder.llMatch_Played_item.setBackgroundColor(Color.parseColor("#e8f5e9"));
@@ -90,24 +91,32 @@ public class MatchPlayedAdapter extends RecyclerView.Adapter<MatchPlayedAdapter.
                 holder.llMatch_Played_item.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.side_border_red));
                 // holder.llMatch_Played_item.setBackgroundColor(Color.parseColor("#ffebee"));
                 holder.tvScore.setText(model.looser_run + "/" + model.looser_wicket + "(" + model.looser_over + ")");
-                holder.tvMatchPlayedRun.setText(model.looser_description);
                 holder.tvScore1.setText(model.winner_run + "/" + model.winner_wicket + "(" + model.winner_over + ")");
+                holder.tvMatchPlayedRun.setText(model.looser_description);
+                holder.tvMatchPlayedRun.setTextSize(12);
             }
-        } else {
+            holder.tvMatchPlayedLocation.setVisibility(View.GONE);
+            holder.tvMatchName.setVisibility(View.GONE);
+            holder.tvMatchPlayedUpcoming.setVisibility(View.GONE);
+
+       } else{
+            holder.llMatch_Played_item.setBackgroundDrawable(context.getResources().getDrawable(R.color.white));
             holder.tvMatchPlayedLocation.setVisibility(View.VISIBLE);
             holder.tvMatchName.setVisibility(View.VISIBLE);
             holder.tvMatchPlayedUpcoming.setVisibility(View.VISIBLE);
-            holder.tvMatchPlayedTeamName1.setText(model.team1.short_name);
-            holder.tvMatchPlayedTeamName2.setText(model.team2.short_name);
+
+//            holder.tvMatchPlayedTeamName1.setText(model.team1.short_name);
+//            holder.tvMatchPlayedTeamName2.setText(model.team2.short_name);
             holder.tvScore.setText("0/0");
             holder.tvScore1.setText("0/0");
             holder.tvMatchPlayedRun.setText((Utils.getTimeInMonth(model.time) + " | " + (model.date)));
 //            holder.tvMatchPlayedDate.setText(model.date);
-            holder.tvMatchPlayedRun.setTextSize(9);
+             holder.tvMatchPlayedRun.setTextSize(9);
             holder.tvMatchPlayedRun.setTextColor(Color.parseColor(("#FA3B5A")));
             holder.tvMatchPlayedLocation.setText(model.location);
 
         }
+
 
         if (model.team1.id.equals(id)) {
             ((MatchPlayedActivity) context).materialMatchPlayed.setTitle(model.team1.short_name + "   (All Matches)");

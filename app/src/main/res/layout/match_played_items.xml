@@ -104,6 +104,30 @@
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
+
+                    <TextView
+                        android:id="@+id/tvMatchPlayedLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvMatchPlayedUpcoming"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:textColor="#70000000"
+                        android:textSize="11sp"
+                        android:visibility="gone"
+                        android:textStyle="bold"/>
+
+
                 </LinearLayout>
 
 
@@ -156,27 +180,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvMatchPlayedLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/tvMatchPlayedUpcoming"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:textColor="#70000000"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
 
         </LinearLayout>
 

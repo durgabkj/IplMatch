@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.facebook.ads.AudienceNetworkAds;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
@@ -27,7 +30,8 @@ public class NewsDetails extends AppCompatActivity {
     String id = "";
     Context context;
     private InterstitialAd interstitialAd;
-
+    AdView adView;
+    LinearLayout banner_containerNews;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +46,7 @@ public class NewsDetails extends AppCompatActivity {
         getData();
 
         AudienceNetworkAds.initialize(this);
-        interstitialAd = new InterstitialAd(this, "IMG_16_9_APP_INSTALL#1065267967364028_1065619153995576");
+        interstitialAd = new InterstitialAd(this, "293876256047333_294753515959607");
         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
             @Override
             public void onInterstitialDisplayed(Ad ad) {
@@ -67,7 +71,7 @@ public class NewsDetails extends AppCompatActivity {
                 // Interstitial ad is loaded and ready to be displayed
                 Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
                 // Show the ad
-                // interstitialAd.show();
+                 interstitialAd.show();
                 showAdWithDelay();
             }
 
@@ -111,12 +115,28 @@ public class NewsDetails extends AppCompatActivity {
                 interstitialAd.show();
             }
         }, (long) (1000 * 60 * 0.13333333333333)); // Show the ad after 8 second
+
+        // Find the Ad Container
+        banner_containerNews = findViewById(R.id.llBannerMatchPlayed);
+        //  AudienceNetworkAds.initialize(this);
+        adView = new AdView(context, "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
+
+
+// Add the ad view to your activity layout
+        banner_containerNews.addView(adView);
+
+// Request an ad
+        adView.loadAd();
+        return;
+
     }
 
 
     @Override
     protected void onDestroy() {
-        if (interstitialAd != null) {
+        if (adView!= null) {
+            adView.destroy();
+        } else if (interstitialAd != null) {
             interstitialAd.destroy();
         }
         super.onDestroy();
@@ -147,7 +167,7 @@ public class NewsDetails extends AppCompatActivity {
                 .into(ivNewsImage);
         tvNewsDetailTitle.setText(model.title);
         tvNewsDescription.setText(model.description);
-        getTvNewsDetailDate.setText(model.date);
+        getTvNewsDetailDate.setText(Utils.getDate(model.date));
 
 
     }

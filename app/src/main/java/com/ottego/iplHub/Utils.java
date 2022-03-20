@@ -98,7 +98,7 @@ public class Utils {
 
     public static String getDate(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd MMM yyyy", Locale.US);
 
         String reformattedStr = "";
         try {

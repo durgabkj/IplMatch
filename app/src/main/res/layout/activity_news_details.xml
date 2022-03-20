@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".NewsDetails">
@@ -41,6 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <TextView
@@ -61,10 +63,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_twotone_calendar_today_24"
+                android:drawableStart="@drawable/ic_calendar"
                 android:drawablePadding="5dp"
                 android:fontFamily="serif"
-                android:textColor="@color/black"
+                android:textColor="#B0000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:transitionName="tnNewsDate" />
@@ -74,16 +76,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="@font/nunito_regular"
                 android:justificationMode="inter_word"
-                android:textColor="#A1000000"
+                android:textColor="#BF000000"
                 android:textSize="14dp" />
         </LinearLayout>
 
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/banner_container"
+        android:id="@+id/banner_containerNews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

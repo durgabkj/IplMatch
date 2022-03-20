@@ -10,9 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:background="#F6F3F3"
         android:orientation="vertical"
-
         >
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -24,12 +23,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvIplMatch"
                 android:layout_width="match_parent"
-                android:layout_height="600dp" />
+                android:layout_height="match_parent" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/banner_container"
@@ -37,4 +33,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical" />
+    </LinearLayout>
 </FrameLayout>

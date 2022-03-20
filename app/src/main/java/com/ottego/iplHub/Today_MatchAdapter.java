@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.MyViewHolder> {
-    List<MatchModel> list;
+    List<MatchModel>list;
     Context context;
 
     public Today_MatchAdapter(Context context, List<MatchModel> list) {
@@ -79,7 +79,6 @@ public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, Player_List_Activity.class);

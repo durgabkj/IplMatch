@@ -44,9 +44,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         final NewsModel model = list.get(i);
         holder.tvNewsTitle.setText(model.title);
         holder.tvNewsDescription.setText(model.description);
-        holder.tvNewsDate.setText(model.date);
+        holder.tvNewsDate.setText(Utils.getDate(model.date));
 
-        setDelay = new Handler();
+//        setDelay = new Handler();
 
         Glide.with(holder.ivNewsItemImage)
                 .load(model.photo)
@@ -57,9 +57,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
             @Override
             public void onClick(View v) {
-                startDelay = new Runnable() {
-                    @Override
-                    public void run() {
+//                startDelay = new Runnable() {
+//                    @Override
+//                    public void run() {
                         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
                                 Pair.create(holder.ivNewsItemImage, "tnBlogImage"),
                                 Pair.create(holder.tvNewsTitle, "tnBlogTitle"),
@@ -68,9 +68,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
                         intent.putExtra("data", new Gson().toJson(model));
                         context.startActivity(intent, options.toBundle());
                     }
-                };
-                setDelay.postDelayed(startDelay, 1000);
-            }
+//                };
+//                setDelay.postDelayed(startDelay, 1000);
+//            }
         });
     }
 

@@ -18,6 +18,7 @@
             android:background="@color/white"
             android:backgroundTint="@color/teal_200"
             app:title="Squads"
+            app:titleTextColor="@color/white"
             app:titleCentered="true" />
     </com.google.android.material.appbar.AppBarLayout>
 

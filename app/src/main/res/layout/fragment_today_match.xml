@@ -51,6 +51,7 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/banner_containerToday"
         android:layout_width="match_parent"
