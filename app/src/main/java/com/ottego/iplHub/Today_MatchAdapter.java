@@ -66,7 +66,7 @@ public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.
                 .into(holder.ivTodayMatchImageTeam2);
 
         long date = Calendar.getInstance().getTimeInMillis();
-        SimpleDateFormat DateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
         String date1 = DateFormat.format(date);
 
 

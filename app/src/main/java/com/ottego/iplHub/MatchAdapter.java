@@ -55,7 +55,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 //        }
 
         long date = Calendar.getInstance().getTimeInMillis();
-        SimpleDateFormat DateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
         String date1 = DateFormat.format(date);
 
 

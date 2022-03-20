@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
                     String shareSubText = "WhatsApp - The Great Chat App";
-                    String shareBodyText = "https://play.google.com/store/apps/details?id=com.whatsapp&hl=en";
+                    String shareBodyText = "https://play.google.com/store/apps/details?id=com.ottego.iplmatch";
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSubText);
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBodyText);
                     startActivity(Intent.createChooser(shareIntent, "Share With"));

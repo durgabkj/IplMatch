@@ -266,7 +266,7 @@ public class TodayMatchFragment extends Fragment {
     private void setRecyclerView() {
         List<MatchModel> list = new ArrayList<>();
         long date = Calendar.getInstance().getTimeInMillis();
-        SimpleDateFormat DateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
         String date1 = DateFormat.format(date);
 
         for (MatchModel m : data.match) {
