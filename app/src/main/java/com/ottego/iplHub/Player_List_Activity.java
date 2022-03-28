@@ -59,11 +59,22 @@ public class Player_List_Activity extends AppCompatActivity {
         //listener();
         getData(id, id1);
 
-
-
-
-
         AudienceNetworkAds.initialize(this);
+
+
+        // Find the Ad Container
+        banner_containerPlayerList = findViewById(R.id.banner_containerPlayerList);
+        //  AudienceNetworkAds.initialize(this);
+        adView = new AdView(context, "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
+
+
+// Add the ad view to your activity layout
+        banner_containerPlayerList.addView(adView);
+
+// Request an ad
+        adView.loadAd();
+
+
         interstitialAd = new InterstitialAd(this, "293876256047333_294753515959607");
         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
             @Override
@@ -113,21 +124,7 @@ public class Player_List_Activity extends AppCompatActivity {
                         .withAdListener(interstitialAdListener)
                         .build());
 
-        // Find the Ad Container
-        banner_containerPlayerList = findViewById(R.id.banner_containerPlayerList);
-        //  AudienceNetworkAds.initialize(this);
-        adView = new AdView(context, "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
-
-
-// Add the ad view to your activity layout
-        banner_containerPlayerList.addView(adView);
-
-// Request an ad
-        adView.loadAd();
-        return ;
-
     }
-
 
     private void fromXml() {
         idRVPlayer = findViewById(R.id.idRVPlayer);
@@ -160,11 +157,7 @@ public class Player_List_Activity extends AppCompatActivity {
         if (adView != null){
             adView.destroy();
         }
-        else if (interstitialAd != null) {
-            interstitialAd.destroy();
-        }
         super.onDestroy();
-
     }
 
 

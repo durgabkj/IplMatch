@@ -82,6 +82,16 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:text="Indian Premier League"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/merriwetherbold"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvMatchDate"
@@ -90,7 +100,7 @@
                         android:layout_gravity="center"
                         android:textAlignment="center"
                         android:textColor="@color/red_400"
-                        android:textSize="12sp"
+                        android:textSize="9sp"
                         android:textStyle="bold" />
 
 
@@ -101,7 +111,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="serif"
                         android:textStyle="bold" />
 
 

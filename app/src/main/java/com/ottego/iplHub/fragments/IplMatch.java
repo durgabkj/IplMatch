@@ -49,8 +49,7 @@ public class IplMatch extends Fragment {
     RecyclerView rvIplMatch;
     LinearLayout banner_container;
     SwipeRefreshLayout srlRecycleViewIplMatch;
-    private InterstitialAd interstitialAd;
-    private final String TAG = IplMatch.class.getSimpleName();
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -79,6 +78,7 @@ public class IplMatch extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,62 +90,10 @@ public class IplMatch extends Fragment {
         listener();
         getData("");
 
-        AudienceNetworkAds.initialize(getContext());
-        interstitialAd = new InterstitialAd(getContext(), "293876256047333_294753515959607");
-        InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
-            @Override
-            public void onInterstitialDisplayed(Ad ad) {
-                // Interstitial ad displayed callback
-                Log.e(TAG, "Interstitial ad displayed.");
-            }
-
-            @Override
-            public void onInterstitialDismissed(Ad ad) {
-                // Interstitial dismissed callback
-                Log.e(TAG, "Interstitial ad dismissed.");
-            }
-
-            @Override
-            public void onError(Ad ad, AdError adError) {
-                // Ad error callback
-                Log.e(TAG, "Interstitial ad failed to load: " + adError.getErrorMessage());
-            }
-
-            @Override
-            public void onAdLoaded(Ad ad) {
-                // Interstitial ad is loaded and ready to be displayed
-                Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
-                // Show the ad
-                // interstitialAd.show();
-                showAdWithDelay();
-            }
-
-            @Override
-            public void onAdClicked(Ad ad) {
-                // Ad clicked callback
-                Log.d(TAG, "Interstitial ad clicked!");
-            }
-
-            @Override
-            public void onLoggingImpression(Ad ad) {
-                // Ad impression logged callback
-                Log.d(TAG, "Interstitial ad impression logged!");
-            }
-        };
-
-        // For auto play video ads, it's recommended to load the ad
-        // at least 30 seconds before it is shown
-        interstitialAd.loadAd(
-                interstitialAd.buildLoadAdConfig()
-                        .withAdListener(interstitialAdListener)
-                        .build());
-
-
         // Find the Ad Container
         banner_container = view.findViewById(R.id.banner_container);
         //  AudienceNetworkAds.initialize(this);
         adView = new AdView(getContext(), "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
-
 
 // Add the ad view to your activity layout
         banner_container.addView(adView);
@@ -153,28 +101,6 @@ public class IplMatch extends Fragment {
 // Request an ad
         adView.loadAd();
         return view;
-
-    }
-
-    private void showAdWithDelay() {
-        /**
-         * displaying the ad with delay;
-         */
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                // Check if interstitialAd has been loaded successfully
-                if (interstitialAd == null || !interstitialAd.isAdLoaded()) {
-                    return;
-                }
-                // Check if ad is already expired or invalidated, and do not show ad if that is the case. You will not get paid to show an invalidated ad.
-                if (interstitialAd.isAdInvalidated()) {
-                    return;
-                }
-                // Show the ad
-                interstitialAd.show();
-            }
-        }, (long) (1000 * 60 * 0.13333333333333)); // Show the ad after 8 second
     }
 
     private void listener() {
@@ -193,11 +119,9 @@ public class IplMatch extends Fragment {
         if (adView != null){
             adView.destroy();
         }
-        else if (interstitialAd != null) {
-            interstitialAd.destroy();
-        }
         super.onDestroy();
     }
+
 
     public void getData(String id) {
        // final ProgressDialog progressDialog = ProgressDialog.show(getContext(), null, "processing...", false, false);
@@ -238,7 +162,6 @@ public class IplMatch extends Fragment {
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.myGetMySingleton(getContext()).myAddToRequest(stringRequest);
     }
-
 
     private void setRecyclerView() {
         //  GridLayoutManager layoutManager = new GridLayoutManager(context, 2);

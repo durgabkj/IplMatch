@@ -45,8 +45,8 @@ public class TeamActivity extends AppCompatActivity {
     AdView adView;
     LinearLayout llBannerTeam;
 
-    private final String TAG = TeamActivity.class.getSimpleName();
-    private InterstitialAd interstitialAd;
+//    private final String TAG = TeamActivity.class.getSimpleName();
+//    private InterstitialAd interstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,56 +56,56 @@ public class TeamActivity extends AppCompatActivity {
         listener();
         getData("");
 
-
+//
         AudienceNetworkAds.initialize(this);
-        interstitialAd = new InterstitialAd(this, "293876256047333_294753515959607");
-        InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
-            @Override
-            public void onInterstitialDisplayed(Ad ad) {
-                // Interstitial ad displayed callback
-                Log.e(TAG, "Interstitial ad displayed.");
-            }
-
-            @Override
-            public void onInterstitialDismissed(Ad ad) {
-                // Interstitial dismissed callback
-                Log.e(TAG, "Interstitial ad dismissed.");
-            }
-
-            @Override
-            public void onError(Ad ad, AdError adError) {
-                // Ad error callback
-                Log.e(TAG, "Interstitial ad failed to load: " + adError.getErrorMessage());
-            }
-
-            @Override
-            public void onAdLoaded(Ad ad) {
-                // Interstitial ad is loaded and ready to be displayed
-                Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
-                // Show the ad
-                // interstitialAd.show();
-                showAdWithDelay();
-            }
-
-            @Override
-            public void onAdClicked(Ad ad) {
-                // Ad clicked callback
-                Log.d(TAG, "Interstitial ad clicked!");
-            }
-
-            @Override
-            public void onLoggingImpression(Ad ad) {
-                // Ad impression logged callback
-                Log.d(TAG, "Interstitial ad impression logged!");
-            }
-        };
-
-        // For auto play video ads, it's recommended to load the ad
-        // at least 30 seconds before it is shown
-        interstitialAd.loadAd(
-                interstitialAd.buildLoadAdConfig()
-                        .withAdListener(interstitialAdListener)
-                        .build());
+//        interstitialAd = new InterstitialAd(this, "293876256047333_294753515959607");
+//        InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
+//            @Override
+//            public void onInterstitialDisplayed(Ad ad) {
+//                // Interstitial ad displayed callback
+//                Log.e(TAG, "Interstitial ad displayed.");
+//            }
+//
+//            @Override
+//            public void onInterstitialDismissed(Ad ad) {
+//                // Interstitial dismissed callback
+//                Log.e(TAG, "Interstitial ad dismissed.");
+//            }
+//
+//            @Override
+//            public void onError(Ad ad, AdError adError) {
+//                // Ad error callback
+//                Log.e(TAG, "Interstitial ad failed to load: " + adError.getErrorMessage());
+//            }
+//
+//            @Override
+//            public void onAdLoaded(Ad ad) {
+//                // Interstitial ad is loaded and ready to be displayed
+//                Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
+//                // Show the ad
+//                // interstitialAd.show();
+//                showAdWithDelay();
+//            }
+//
+//            @Override
+//            public void onAdClicked(Ad ad) {
+//                // Ad clicked callback
+//                Log.d(TAG, "Interstitial ad clicked!");
+//            }
+//
+//            @Override
+//            public void onLoggingImpression(Ad ad) {
+//                // Ad impression logged callback
+//                Log.d(TAG, "Interstitial ad impression logged!");
+//            }
+//        };
+//
+//        // For auto play video ads, it's recommended to load the ad
+//        // at least 30 seconds before it is shown
+//        interstitialAd.loadAd(
+//                interstitialAd.buildLoadAdConfig()
+//                        .withAdListener(interstitialAdListener)
+//                        .build());
 
 
         llBannerTeam = findViewById(R.id.llBannerTeam);
@@ -117,40 +117,37 @@ public class TeamActivity extends AppCompatActivity {
 
 // Request an ad
         adView.loadAd();
-        return ;
+
 
     }
 
 
-
-    private void showAdWithDelay() {
-        /**
-         * Here is an example for displaying the ad with delay;
-         * Please do not copy the Handler into your project
-         */
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                // Check if interstitialAd has been loaded successfully
-                if(interstitialAd == null || !interstitialAd.isAdLoaded()) {
-                    return;
-                }
-                // Check if ad is already expired or invalidated, and do not show ad if that is the case. You will not get paid to show an invalidated ad.
-                if(interstitialAd.isAdInvalidated()) {
-                    return;
-                }
-                // Show the ad
-                interstitialAd.show();
-            }
-        }, (long) (1000 * 60 * 0.13333333333333)); // Show the ad after 15 minutes
-    }
+//    private void showAdWithDelay() {
+//        /**
+//         * Here is an example for displaying the ad with delay;
+//         * Please do not copy the Handler into your project
+//         */
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//                // Check if interstitialAd has been loaded successfully
+//                if(interstitialAd == null || !interstitialAd.isAdLoaded()) {
+//                    return;
+//                }
+//                // Check if ad is already expired or invalidated, and do not show ad if that is the case. You will not get paid to show an invalidated ad.
+//                if(interstitialAd.isAdInvalidated()) {
+//                    return;
+//                }
+//                // Show the ad
+//                interstitialAd.show();
+//            }
+//        }, (long) (1000 * 60 * 0.13333333333333)); // Show the ad after 15 minutes
+//    }
 
     @Override
     protected void onDestroy() {
         if (adView!= null) {
             adView.destroy();
-        } else if (interstitialAd != null) {
-            interstitialAd.destroy();
         }
         super.onDestroy();
     }

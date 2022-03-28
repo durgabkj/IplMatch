@@ -3,6 +3,8 @@ package com.ottego.iplHub;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +13,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ottego.iplHub.Model.MatchModel;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class MatchPlayedAdapter extends RecyclerView.Adapter<MatchPlayedAdapter.MyViewHolder> {
     List<MatchModel> list;
@@ -35,6 +40,7 @@ public class MatchPlayedAdapter extends RecyclerView.Adapter<MatchPlayedAdapter.
         return new MyViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull MatchPlayedAdapter.MyViewHolder holder, int i) {
@@ -109,7 +115,7 @@ public class MatchPlayedAdapter extends RecyclerView.Adapter<MatchPlayedAdapter.
 //            holder.tvMatchPlayedTeamName2.setText(model.team2.short_name);
             holder.tvScore.setText("0/0");
             holder.tvScore1.setText("0/0");
-            holder.tvMatchPlayedRun.setText((Utils.getTimeInMonth(model.time) + " | " + (model.date)));
+            holder.tvMatchPlayedRun.setText((Utils.getTimeInMonth(model.time) + " | " + (Utils.getDate(model.date))));
 //            holder.tvMatchPlayedDate.setText(model.date);
              holder.tvMatchPlayedRun.setTextSize(9);
             holder.tvMatchPlayedRun.setTextColor(Color.parseColor(("#FA3B5A")));
@@ -124,10 +130,22 @@ public class MatchPlayedAdapter extends RecyclerView.Adapter<MatchPlayedAdapter.
             ((MatchPlayedActivity) context).materialMatchPlayed.setTitle(model.team2.short_name + "   (All Matches)");
         }
 
+        long date = Calendar.getInstance().getTimeInMillis();
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+        String date1 = DateFormat.format(date);
 
-        if (model.status.equals("0")) {
-            holder.tvMatchPlayedUpcoming.setText("Upcoming Match");
+// Show Upcoming and today match
+
+       if((Utils.getDate(model.date).compareTo(date1) == 0))
+        {
+            holder.tvMatchPlayedUpcoming.setText("Today Match");
+            holder.tvMatchPlayedUpcoming.setTextColor(Color.parseColor(("#FF000000")));
         }
+       else
+       {
+           holder.tvMatchPlayedUpcoming.setText("Upcoming Match");
+
+       }
 
     }
 

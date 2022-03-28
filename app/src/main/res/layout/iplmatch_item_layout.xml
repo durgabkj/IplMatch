@@ -4,15 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-
     >
-
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcvUpcomingMatch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
+        android:layout_margin="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="8dp"
         app:cardElevation="1dp">
@@ -35,7 +32,9 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/llAllMatch"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
                 android:padding="3dp">
 
@@ -84,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:gravity="center"
                     android:orientation="vertical">
 

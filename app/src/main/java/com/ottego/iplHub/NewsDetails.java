@@ -46,6 +46,20 @@ public class NewsDetails extends AppCompatActivity {
         getData();
 
         AudienceNetworkAds.initialize(this);
+
+
+        // Find the Ad Container
+        banner_containerNews = findViewById(R.id.banner_containerNews);
+        //  AudienceNetworkAds.initialize(this);
+        adView = new AdView(this, "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
+
+
+// Add the ad view to your activity layout
+        banner_containerNews.addView(adView);
+// Request an ad
+        adView.loadAd();
+
+
         interstitialAd = new InterstitialAd(this, "293876256047333_294753515959607");
         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
             @Override
@@ -71,7 +85,7 @@ public class NewsDetails extends AppCompatActivity {
                 // Interstitial ad is loaded and ready to be displayed
                 Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
                 // Show the ad
-                 interstitialAd.show();
+                // interstitialAd.show();
                 showAdWithDelay();
             }
 
@@ -116,19 +130,6 @@ public class NewsDetails extends AppCompatActivity {
             }
         }, (long) (1000 * 60 * 0.13333333333333)); // Show the ad after 8 second
 
-        // Find the Ad Container
-        banner_containerNews = findViewById(R.id.llBannerMatchPlayed);
-        //  AudienceNetworkAds.initialize(this);
-        adView = new AdView(context, "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
-
-
-// Add the ad view to your activity layout
-        banner_containerNews.addView(adView);
-
-// Request an ad
-        adView.loadAd();
-        return;
-
     }
 
 
@@ -136,8 +137,6 @@ public class NewsDetails extends AppCompatActivity {
     protected void onDestroy() {
         if (adView!= null) {
             adView.destroy();
-        } else if (interstitialAd != null) {
-            interstitialAd.destroy();
         }
         super.onDestroy();
     }

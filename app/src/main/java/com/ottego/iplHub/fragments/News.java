@@ -93,7 +93,6 @@ public class News extends Fragment {
         getData("");
 
 
-
         banner_container_News = view.findViewById(R.id.banner_container_News);
         //  AudienceNetworkAds.initialize(this);
         adView = new AdView(getContext(), "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);

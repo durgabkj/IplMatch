@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -89,6 +90,10 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
                 .into(holder.ivIplImageTeam2);
 
 
+        if (model.status.equals("1")) {
+            holder.tvLive.setVisibility(View.GONE);
+            holder.llAllMatch.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.side_border_gray));
+        }
     }
 
     @Override
@@ -100,6 +105,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         TextView tvIplTitle, tvIplDate, tvIplTime, tvIplLocation, tvTeamName1, tvTeamName2, tvLive;
         ImageView ivIplImageTeam1, ivIplImageTeam2;
         MaterialCardView mcvUpcomingMatch;
+        LinearLayout llAllMatch;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -114,6 +120,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
             tvIplLocation = itemView.findViewById(R.id.tvIplLocation);
             mcvUpcomingMatch = itemView.findViewById(R.id.mcvUpcomingMatch);
             tvLive = itemView.findViewById(R.id.tvLive);
+            llAllMatch=itemView.findViewById(R.id.llAllMatch);
 
         }
     }

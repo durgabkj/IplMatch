@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,9 @@ public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         final MatchModel model = list.get(i);
 
+
+        holder.llPrediction.setVisibility(View.GONE);
+        holder.tvLiveTodayMatch.setVisibility(View.GONE);
         holder.tvTodayMatchTitle.setText("Indian Premier League " + model.id + " Match");
         holder.tvTodayMatchDate.setText((Utils.getDate(model.date) + " | "));
         holder.tvTodayMatchTime.setText(Utils.getTimeInMonth(model.time));
@@ -76,6 +80,7 @@ public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.
             holder.tvLiveTodayMatch.setBackgroundColor(Color.parseColor("#db4035"));
         } else {
             holder.tvLiveTodayMatch.setVisibility(View.GONE);
+            holder.llPrediction.setVisibility(View.GONE);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -99,9 +104,11 @@ public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
+
         TextView tvTodayMatchTitle, tvTodayMatchDate, tvTodayMatchTime, tvTodayMatchLocation, tvTodayMatchTeamName1, tvTodayMatchTeamName2, tvLiveTodayMatch;
         ImageView ivTodayMatchImageTeam1, ivTodayMatchImageTeam2;
         MaterialCardView mcvTodayMatch;
+        LinearLayout llPrediction;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -116,6 +123,8 @@ public class Today_MatchAdapter extends RecyclerView.Adapter<Today_MatchAdapter.
             tvTodayMatchLocation = itemView.findViewById(R.id.tvTodayMatchLocation);
             mcvTodayMatch = itemView.findViewById(R.id.mcvTodayMatch);
             tvLiveTodayMatch = itemView.findViewById(R.id.tvLiveTodayMatch);
+
+            llPrediction=itemView.findViewById(R.id.llPrediction);
         }
 
 

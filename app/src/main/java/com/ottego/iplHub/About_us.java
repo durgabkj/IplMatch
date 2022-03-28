@@ -32,6 +32,21 @@ LinearLayout  banner_containerAbout;
         listener();
 
         AudienceNetworkAds.initialize(this);
+
+
+        // Find the Ad Container
+        banner_containerAbout = findViewById(R.id.banner_containerAbout);
+        //  AudienceNetworkAds.initialize(this);
+        adView = new AdView(About_us.this, "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
+
+
+// Add the ad view to your activity layout
+        banner_containerAbout.addView(adView);
+
+// Request an ad
+        adView.loadAd();
+
+
         interstitialAd = new InterstitialAd(this, "293876256047333_294753515959607");
         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
             @Override
@@ -81,18 +96,7 @@ LinearLayout  banner_containerAbout;
                         .withAdListener(interstitialAdListener)
                         .build());
 
-        // Find the Ad Container
-        banner_containerAbout = findViewById(R.id.banner_containerAbout);
-        //  AudienceNetworkAds.initialize(this);
-        adView = new AdView(About_us.this, "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
 
-
-// Add the ad view to your activity layout
-        banner_containerAbout.addView(adView);
-
-// Request an ad
-        adView.loadAd();
-return;
     }
 
 
@@ -124,8 +128,6 @@ return;
     protected void onDestroy() {
         if (adView!= null) {
             adView.destroy();
-        } else if (interstitialAd != null) {
-            interstitialAd.destroy();
         }
         super.onDestroy();
     }

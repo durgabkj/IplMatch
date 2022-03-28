@@ -74,11 +74,23 @@
         android:textColor="#B5000000"
         android:textSize="17dp" />
 
-    <LinearLayout
-        android:id="@+id/banner_containerDescription"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="bottom"
-        android:orientation="vertical" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/banner_containerDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom"
+            android:orientation="vertical" />
+    </RelativeLayout>
+
 
 </LinearLayout>

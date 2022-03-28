@@ -39,7 +39,7 @@ public class TeamAdapterNew extends RecyclerView.Adapter<TeamAdapterNew.MyViewHo
         final TeamItemModel model = list.get(i);
         holder.tvTeamItemName.setText(model.name);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         holder.rvTeamItem.setLayoutManager(layoutManager);
         holder.rvTeamItem.setHasFixedSize(true);
         holder.rvTeamItem.setNestedScrollingEnabled(true);

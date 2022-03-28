@@ -19,6 +19,7 @@ public class MatchModel {
     public String winner_description;
     public String looser_description;
     public String live;
+    public String prediction;
     public TeamModel loss;
 
 }

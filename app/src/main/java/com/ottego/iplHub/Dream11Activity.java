@@ -1,13 +1,11 @@
 package com.ottego.iplHub;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,56 +22,69 @@ import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
-import com.facebook.ads.AudienceNetworkAds;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
-import com.ottego.iplHub.Model.DataModelPtsTable;
+import com.ottego.iplHub.Model.DataModelDescription;
+import com.ottego.iplHub.Model.DataModelDream11;
+import com.ottego.iplHub.Model.DescriptionModel;
+import com.ottego.iplHub.fragments.TodayMatchFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class PointTableActivity extends AppCompatActivity {
-    private final String TAG = PointTableActivity.class.getSimpleName();
+public class Dream11Activity extends AppCompatActivity {
     Context context;
-    String url = Utils.URL + "get_point_table";
-    DataModelPtsTable data;
-    SwipeRefreshLayout srlRecycleView;
-    RecyclerView rvPointTable;
-    MaterialToolbar mtPtsToolBar;
-    TextView tv_no_data;
-    LinearLayout llRanking, ll_no_data_PointTable,llBannerPointTable;
+    String url = Utils.URL + "getDream11_Player";
+    String descriptionUrl = Utils.URL + "getDream11_Description";
     AdView adView;
+    DataModelDream11 data;
+    RecyclerView rvDream11, rvDream11Description;
+    DataModelDescription data1;
+    LinearLayout banner_container_Dream11,ll_no_data_Dream11,llMatchIteam;
+    SwipeRefreshLayout srlRecycleViewDream11;
+    MaterialButton mbDescription;
+    MaterialToolbar mtDream11ToolBar;
+
     private InterstitialAd interstitialAd;
+    private final String TAG = Dream11Activity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_point_table);
-        context = PointTableActivity.this;
-        fromXml();
+        setContentView(R.layout.activity_dream11);
+
+        context = Dream11Activity.this;
+        rvDream11 = findViewById(R.id.rvDream11);
+        rvDream11Description = findViewById(R.id.rvDream11Description);
+        srlRecycleViewDream11 = findViewById(R.id.srlRecycleViewDream11);
+        mbDescription = findViewById(R.id.mbDescription);
+        ll_no_data_Dream11=findViewById(R.id.ll_no_data_Dream11);
+        llMatchIteam=findViewById(R.id.llMatchIteam);
+        banner_container_Dream11=findViewById(R.id.banner_container_Dream11);
+        mtDream11ToolBar=findViewById(R.id.mtDream11ToolBar);
+
         listener();
         getData("");
-
-
-        AudienceNetworkAds.initialize(this);
+        getDescriptionData("");
 
 
 
-        llBannerPointTable=findViewById(R.id.llBannerPointTable);
         //  AudienceNetworkAds.initialize(this);
         adView = new AdView(context, "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
 
 
 // Add the ad view to your activity layout
-        llBannerPointTable.addView(adView);
+        banner_container_Dream11.addView(adView);
 
 // Request an ad
         adView.loadAd();
 
 
-        interstitialAd = new InterstitialAd(this, "293876256047333_294753515959607");
+
+        interstitialAd = new InterstitialAd(context, "293876256047333_294753515959607");
         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
             @Override
             public void onInterstitialDisplayed(Ad ad) {
@@ -102,6 +113,7 @@ public class PointTableActivity extends AppCompatActivity {
                 showAdWithDelay();
             }
 
+
             @Override
             public void onAdClicked(Ad ad) {
                 // Ad clicked callback
@@ -123,6 +135,8 @@ public class PointTableActivity extends AppCompatActivity {
                         .build());
 
     }
+
+
 
     private void showAdWithDelay() {
         /**
@@ -146,56 +160,44 @@ public class PointTableActivity extends AppCompatActivity {
     }
 
 
-
-    @Override
-    public void onDestroy() {
-        if (adView != null){
-            adView.destroy();
-        }
-        super.onDestroy();
-
-    }
-
-    private void fromXml() {
-        srlRecycleView = findViewById(R.id.srlRecycleViewPointTable);
-        rvPointTable = findViewById(R.id.rvPointTable);
-        mtPtsToolBar = findViewById(R.id.mtPtsToolBar);
-//        ll_no_data_PointTable = findViewById(R.id.ll_no_data_PointTable);
-//        llRanking = findViewById(R.id.llRanking);
-    }
-
     private void listener() {
-        srlRecycleView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        srlRecycleViewDream11.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 getData("");
             }
         });
-        mtPtsToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+        mtDream11ToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 onBackPressed();
             }
         });
     }
 
-
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
+    }
 
 
     public void getData(String id) {
-      //  final ProgressDialog progressDialog = ProgressDialog.show(context, null, "processing...", false, false);
+        // final ProgressDialog progressDialog = ProgressDialog.show(getContext(), null, "processing...", false, false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                srlRecycleView.setRefreshing(false);
-              //  progressDialog.dismiss();
+                srlRecycleViewDream11.setRefreshing(false);
+                //  progressDialog.dismiss();
                 Log.e("response", response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String code = jsonObject.getString("status");
                     if (code.equalsIgnoreCase("true")) {
                         Gson gson = new Gson();
-                        data = gson.fromJson(jsonObject.getString("data"), DataModelPtsTable.class);
+                        data = gson.fromJson(jsonObject.getString("data"), DataModelDream11.class);
                         setRecyclerView();
 
                     } else {
@@ -203,16 +205,16 @@ public class PointTableActivity extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    // Toast.makeText(context, "Something went wrong, try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Something went wrong, try again.", Toast.LENGTH_SHORT).show();
                 }
             }
         },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                      //  progressDialog.dismiss();
+                        // progressDialog.dismiss();
                         error.printStackTrace();
-                        srlRecycleView.setRefreshing(false);
+                        srlRecycleViewDream11.setRefreshing(false);
                         Toast.makeText(context, "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
                     }
                 }) {
@@ -222,25 +224,76 @@ public class PointTableActivity extends AppCompatActivity {
         MySingleton.myGetMySingleton(context).myAddToRequest(stringRequest);
     }
 
-    private void setRecyclerView() {
-        //GridLayoutManager layoutManager = new GridLayoutManager(context, 7);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        rvPointTable.setLayoutManager(layoutManager);
-        rvPointTable.setHasFixedSize(true);
-        rvPointTable.setNestedScrollingEnabled(true);
-        PtsTableAdapter adapter = new PtsTableAdapter(context, data.point);
-        rvPointTable.setAdapter(adapter);
 
-//
-//        if (adapter.getItemCount() != 0) {
-//            rvPointTable.setAdapter(adapter);
-//            rvPointTable.setVisibility(View.VISIBLE);
-//            llRanking.setVisibility(View.VISIBLE);
-//
-//        } else {
-//            ll_no_data_PointTable.setVisibility(View.VISIBLE);
-//            ll_no_data_PointTable.setVisibility(View.VISIBLE);
-//
-//        }
-   }
+    public void getDescriptionData(String id) {
+        // final ProgressDialog progressDialog = ProgressDialog.show(getContext(), null, "processing...", false, false);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, descriptionUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+               // srlRecycleViewDream11.setRefreshing(false);
+                //  progressDialog.dismiss();
+                Log.e("response", response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String code = jsonObject.getString("status");
+                    if (code.equalsIgnoreCase("true")) {
+                        Gson gson = new Gson();
+                        data1 = gson.fromJson(jsonObject.getString("data"), DataModelDescription.class);
+                        setRecyclerView1();
+
+                    } else {
+                        Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, "Something went wrong, try again.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // progressDialog.dismiss();
+                        error.printStackTrace();
+                       // srlRecycleViewDream11.setRefreshing(false);
+                        Toast.makeText(context, "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+           };
+
+         stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+         MySingleton.myGetMySingleton(context).myAddToRequest(stringRequest);
+    }
+
+
+    private void setRecyclerView() {
+        //  GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        rvDream11.setLayoutManager(layoutManager);
+        rvDream11.setHasFixedSize(true);
+        rvDream11.setNestedScrollingEnabled(true);
+        Dream11Adapter adapter = new Dream11Adapter(context, data.dream11);
+        rvDream11.setAdapter(adapter);
+
+        if (adapter.getItemCount() != 0) {
+            rvDream11.setAdapter(adapter);
+            ll_no_data_Dream11.setVisibility(View.GONE);
+            llMatchIteam.setVisibility(View.VISIBLE);
+
+        } else {
+            llMatchIteam.setVisibility(View.GONE);
+            ll_no_data_Dream11.setVisibility(View.VISIBLE);
+        }
+
+    }
+    
+    private void setRecyclerView1() {
+        //  GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        rvDream11Description.setLayoutManager(layoutManager);
+        rvDream11Description.setHasFixedSize(true);
+        rvDream11Description.setNestedScrollingEnabled(true);
+        DescriptionAdapter adapter = new DescriptionAdapter(context,data1.description);
+        rvDream11Description.setAdapter(adapter);
+    }
 }

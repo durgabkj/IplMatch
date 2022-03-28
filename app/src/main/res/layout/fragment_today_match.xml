@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="1"
     android:background="#F6F3F3"
     android:orientation="vertical"
     tools:context=".fragments.TodayMatchFragment">
 
     <LinearLayout
-
+        android:id="@+id/llMatchIteam"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_height="250dp"
+        android:background="#F6F3F3"
         android:orientation="vertical">
 
         <LinearLayout
@@ -45,10 +46,37 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTodayMatch"
                 android:layout_width="match_parent"
-                android:layout_height="600dp" />
+                android:layout_height="match_parent"
+                android:padding="5dp" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llMatchIteam"
+        android:layout_margin="10dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbDream11"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_dream11"
+            android:text="Dream 11 Team" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbPrediction"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_predictive"
+            android:text=" Team Prediction" />
     </LinearLayout>
 
 
@@ -58,4 +86,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical" />
-</FrameLayout>
+</RelativeLayout>

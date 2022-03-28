@@ -16,14 +16,17 @@ public class DataModelPlayer {
     public TeamItemModel getTeam1() {
         List<PlayerModel> t1 = new ArrayList<>();
         for (PlayerModel p : player) {
+
             if (p.team_id.equalsIgnoreCase(teamid1) && p.status.equals("1")) {
                 t1.add(p);
             }
-
         }
 
-        TeamItemModel ta = new TeamItemModel(teamid1, t1.get(0).team_name, t1);
-        return ta;
+        if (t1.size()> 0){
+            return new TeamItemModel(teamid1, t1.get(0).team_name, t1);
+        }else{
+            return new TeamItemModel(teamid1, "Players not decided yet", t1);
+        }
     }
 
     public TeamItemModel getTeam2() {
@@ -32,10 +35,14 @@ public class DataModelPlayer {
             if (p.team_id.equalsIgnoreCase(teamid2) && p.status.equals("1")) {
                 t2.add(p);
             }
-
         }
-        TeamItemModel tb = new TeamItemModel(teamid2, t2.get(0).team_name, t2);
-        return tb;
+
+        if (t2.size()> 0){
+            return new TeamItemModel(teamid2, t2.get(0).team_name, t2);
+        }else{
+            return new TeamItemModel(teamid2, "Players not decided yet", t2);
+        }
+
     }
 
     public List<TeamItemModel> getTeamList() {

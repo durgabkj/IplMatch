@@ -1,19 +1,22 @@
 package com.ottego.iplHub;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.android.volley.AuthFailureError;
+import android.content.Context;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -27,57 +30,56 @@ import com.facebook.ads.AudienceNetworkAds;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.ottego.iplHub.Model.DataModelMatch;
+import com.ottego.iplHub.Model.MatchModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
-public class MatchPlayedActivity extends AppCompatActivity {
-    private final String TAG = MatchPlayedActivity.class.getSimpleName();
-    Context context;
-    String url = Utils.URL + "played";
+public class Prediction extends AppCompatActivity {
+
+    private final String TAG = Prediction.class.getSimpleName();
+    String url = Utils.URL + "getmatch";
     DataModelMatch data;
-    SwipeRefreshLayout srlRecycleView;
-    RecyclerView rvMatchPlayed;
-    String id = "";
-    LinearLayout ll_no_data_MatchPlayed, llItems, llBannerMatchPlayed;
-    MaterialToolbar materialMatchPlayed;
+    Context context;
+    TextView tv_no_data_TodayMatch;
     AdView adView;
-    private InterstitialAd interstitialAd;
+    MaterialToolbar mtPredictionToolBar;
+    RecyclerView rvPrediction;
+    LinearLayout banner_containerPrediction;
+    SwipeRefreshLayout srlRecycleViewPrediction;
 
+
+    private InterstitialAd interstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_match_played);
-        id = getIntent().getStringExtra("data");
-//        int pos = Integer.parseInt(id);
-        Log.e("id", id);
-        context = MatchPlayedActivity.this;
+        setContentView(R.layout.activity_prediction);
+        context=Prediction.this;
         fromXml();
         listener();
-        getData(id);
+        getData("");
 
-        AudienceNetworkAds.initialize(this);
-
-
-        // Find the Ad Container
-        llBannerMatchPlayed = findViewById(R.id.llBannerMatchPlayed);
-        //  AudienceNetworkAds.initialize(this);
+//  AudienceNetworkAds.initialize(this);
         adView = new AdView(context, "293876256047333_293879839380308", AdSize.BANNER_HEIGHT_50);
 
 
 // Add the ad view to your activity layout
-        llBannerMatchPlayed.addView(adView);
+        banner_containerPrediction.addView(adView);
 
 // Request an ad
         adView.loadAd();
 
 
-        interstitialAd = new InterstitialAd(this, "293876256047333_294753515959607");
+
+        interstitialAd = new InterstitialAd(context, "293876256047333_294753515959607");
         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
             @Override
             public void onInterstitialDisplayed(Ad ad) {
@@ -106,6 +108,7 @@ public class MatchPlayedActivity extends AppCompatActivity {
                 showAdWithDelay();
             }
 
+
             @Override
             public void onAdClicked(Ad ad) {
                 // Ad clicked callback
@@ -130,75 +133,73 @@ public class MatchPlayedActivity extends AppCompatActivity {
 
     private void showAdWithDelay() {
         /**
-         * Here is an example for displaying the ad with delay;
-         * Please do not copy the Handler into your project
+         * displaying the ad with delay;
          */
-         Handler handler = new Handler();
+        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
                 // Check if interstitialAd has been loaded successfully
-                if(interstitialAd == null || !interstitialAd.isAdLoaded()) {
+                if (interstitialAd == null || !interstitialAd.isAdLoaded()) {
                     return;
                 }
                 // Check if ad is already expired or invalidated, and do not show ad if that is the case. You will not get paid to show an invalidated ad.
-                if(interstitialAd.isAdInvalidated()) {
+                if (interstitialAd.isAdInvalidated()) {
                     return;
                 }
                 // Show the ad
                 interstitialAd.show();
             }
-        }, (long) (1000 * 60 * 0.13333333333333)); // Show the ad after 15 minutes
+        }, (long) (1000 * 60 * 0.13333333333333)); // Show the ad after 8 second
     }
 
     @Override
-    protected void onDestroy() {
-        if (adView!= null) {
+    public void onDestroy() {
+        if (adView != null){
             adView.destroy();
         }
         super.onDestroy();
     }
 
     private void fromXml() {
-        srlRecycleView = findViewById(R.id.srlRecycleViewMatchPlayed);
-        rvMatchPlayed = findViewById(R.id.rvMatchPlayed);
-        ll_no_data_MatchPlayed = findViewById(R.id.ll_no_data_MatchPlayed);
-        llItems = findViewById(R.id.llItems);
-        materialMatchPlayed = findViewById(R.id.mtbMatchPlayed);
+        rvPrediction=findViewById(R.id.rvPrediction);
+        banner_containerPrediction=findViewById(R.id.banner_containerPrediction);
+        srlRecycleViewPrediction=findViewById(R.id.srlRecycleViewPrediction);
+        mtPredictionToolBar=findViewById(R.id.mtPredictionToolBar);
     }
 
 
     private void listener() {
-        srlRecycleView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mtPredictionToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onRefresh() {
-                getData(id);
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
 
-
-
-    public void getData(String id) {
-        //  final ProgressDialog progressDialog = ProgressDialog.show(context, null, "processing...", false, false);
+    private void getData(String id) {
+        //final ProgressDialog progressDialog = ProgressDialog.show(getContext(), null, "processing...", false, false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(String response) {
-                srlRecycleView.setRefreshing(false);
-                //   progressDialog.dismiss();
+                srlRecycleViewPrediction.setRefreshing(false);
+                // progressDialog.dismiss();
                 Log.e("response", response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String code = jsonObject.getString("status");
                     if (code.equalsIgnoreCase("true")) {
                         Gson gson = new Gson();
-                        data = gson.fromJson(response, DataModelMatch.class);
+                        data = gson.fromJson(String.valueOf(jsonObject.getJSONObject("data")), DataModelMatch.class);
                         setRecyclerView();
+
                     } else {
                         Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    // Toast.makeText(context, "Something went wrong, try again.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Something went wrong, try again.", Toast.LENGTH_SHORT).show();
                 }
             }
         },
@@ -207,46 +208,41 @@ public class MatchPlayedActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // progressDialog.dismiss();
                         error.printStackTrace();
-                        srlRecycleView.setRefreshing(false);
+                        srlRecycleViewPrediction.setRefreshing(false);
                         Toast.makeText(context, "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
                     }
                 }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("teamId", id);
-
-                return params;
-            }
         };
-
 
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.myGetMySingleton(context).myAddToRequest(stringRequest);
-
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setRecyclerView() {
-        //  GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
+        List<MatchModel> list = new ArrayList<>();
+        long date = Calendar.getInstance().getTimeInMillis();
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+        String date1 = DateFormat.format(date);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        rvMatchPlayed.setLayoutManager(layoutManager);
-        rvMatchPlayed.setHasFixedSize(true);
-        rvMatchPlayed.setNestedScrollingEnabled(true);
-        MatchPlayedAdapter adapter = new MatchPlayedAdapter(context, data.match, id);
-        rvMatchPlayed.setAdapter(adapter);
-
-        if (adapter.getItemCount() != 0) {
-            rvMatchPlayed.setAdapter(adapter);
-            rvMatchPlayed.setVisibility(View.VISIBLE);
-
-        } else {
-            ll_no_data_MatchPlayed.setVisibility(View.VISIBLE);
-            ll_no_data_MatchPlayed.setVisibility(View.VISIBLE);
-
+        for (MatchModel m : data.match) {
+            if ((Utils.getDate(m.date).compareTo(date1) == 0)) {
+                list.add(m);
+            }
         }
+        //  GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        rvPrediction.setLayoutManager(layoutManager);
+        rvPrediction.setHasFixedSize(true);
+        rvPrediction.setNestedScrollingEnabled(true);
+        predictionAdapter matchAdapter = new predictionAdapter(context, list);
+        rvPrediction.setAdapter(matchAdapter);
+
+//        if (matchAdapter.getItemCount() != 0) {
+//            rvPrediction.setAdapter(matchAdapter);
+//            ll_no_data_TodayMatch.setVisibility(View.GONE);
+//            rvTodayMatch.setVisibility(View.VISIBLE);
 
     }
-
 }

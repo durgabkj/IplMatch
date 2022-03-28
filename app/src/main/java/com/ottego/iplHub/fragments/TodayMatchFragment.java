@@ -1,10 +1,9 @@
 package com.ottego.iplHub.fragments;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,17 +23,16 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.facebook.ads.Ad;
-import com.facebook.ads.AdError;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.facebook.ads.AudienceNetworkAds;
-import com.facebook.ads.InterstitialAd;
-import com.facebook.ads.InterstitialAdListener;
+import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
+import com.ottego.iplHub.Dream11Activity;
 import com.ottego.iplHub.Model.DataModelMatch;
 import com.ottego.iplHub.Model.MatchModel;
 import com.ottego.iplHub.MySingleton;
+import com.ottego.iplHub.Prediction;
 import com.ottego.iplHub.R;
 import com.ottego.iplHub.Today_MatchAdapter;
 import com.ottego.iplHub.Utils;
@@ -60,13 +58,11 @@ public class TodayMatchFragment extends Fragment {
     DataModelMatch data;
     TextView tv_no_data_TodayMatch;
     AdView adView;
+    MaterialButton mbDream11, mbPrediction;
     RecyclerView rvTodayMatch;
     LinearLayout banner_containerToday, ll_no_data_TodayMatch;
     SwipeRefreshLayout srlRecycleViewTodayMatch;
 
-
-    private InterstitialAd interstitialAd;
-    private final String TAG = TodayMatchFragment.class.getSimpleName();
     private String mParam1;
     private String mParam2;
 
@@ -101,60 +97,14 @@ public class TodayMatchFragment extends Fragment {
         rvTodayMatch = view.findViewById(R.id.rvTodayMatch);
         srlRecycleViewTodayMatch = view.findViewById(R.id.srlRecycleViewTodayMatch);
         ll_no_data_TodayMatch = view.findViewById(R.id.ll_no_data_TodayMatch);
+        mbDream11 = view.findViewById(R.id.mbDream11);
+        mbPrediction = view.findViewById(R.id.mbPrediction);
 
 
         listener();
         getData("");
 
         AudienceNetworkAds.initialize(getContext());
-        interstitialAd = new InterstitialAd(getContext(), "293876256047333_294753515959607");
-        InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
-            @Override
-            public void onInterstitialDisplayed(Ad ad) {
-                // Interstitial ad displayed callback
-                Log.e(TAG, "Interstitial ad displayed.");
-            }
-
-            @Override
-            public void onInterstitialDismissed(Ad ad) {
-                // Interstitial dismissed callback
-                Log.e(TAG, "Interstitial ad dismissed.");
-            }
-
-            @Override
-            public void onError(Ad ad, AdError adError) {
-                // Ad error callback
-                Log.e(TAG, "Interstitial ad failed to load: " + adError.getErrorMessage());
-            }
-
-            @Override
-            public void onAdLoaded(Ad ad) {
-                // Interstitial ad is loaded and ready to be displayed
-                Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
-                // Show the ad
-                // interstitialAd.show();
-                showAdWithDelay();
-            }
-
-            @Override
-            public void onAdClicked(Ad ad) {
-                // Ad clicked callback
-                Log.d(TAG, "Interstitial ad clicked!");
-            }
-
-            @Override
-            public void onLoggingImpression(Ad ad) {
-                // Ad impression logged callback
-                Log.d(TAG, "Interstitial ad impression logged!");
-            }
-        };
-
-        // For auto play video ads, it's recommended to load the ad
-        // at least 30 seconds before it is shown
-        interstitialAd.loadAd(
-                interstitialAd.buildLoadAdConfig()
-                        .withAdListener(interstitialAdListener)
-                        .build());
 
 
         // Find the Ad Container
@@ -173,27 +123,6 @@ public class TodayMatchFragment extends Fragment {
     }
 
 
-    private void showAdWithDelay() {
-        /**
-         * displaying the ad with delay;
-         */
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                // Check if interstitialAd has been loaded successfully
-                if (interstitialAd == null || !interstitialAd.isAdLoaded()) {
-                    return;
-                }
-                // Check if ad is already expired or invalidated, and do not show ad if that is the case. You will not get paid to show an invalidated ad.
-                if (interstitialAd.isAdInvalidated()) {
-                    return;
-                }
-                // Show the ad
-                interstitialAd.show();
-            }
-        }, (long) (1000 * 60 * 0.13333333333333)); // Show the ad after 8 second
-    }
-
     private void listener() {
 
         srlRecycleViewTodayMatch.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -203,17 +132,28 @@ public class TodayMatchFragment extends Fragment {
             }
         });
 
+        mbDream11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Dream11Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        mbPrediction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Prediction.class);
+                startActivity(intent);
+            }
+        });
+
     }
-
-
 
     @Override
     public void onDestroy() {
-        if (adView != null){
+        if (adView != null) {
             adView.destroy();
-        }
-        else if (interstitialAd != null) {
-            interstitialAd.destroy();
         }
         super.onDestroy();
 
@@ -227,7 +167,7 @@ public class TodayMatchFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 srlRecycleViewTodayMatch.setRefreshing(false);
-               // progressDialog.dismiss();
+                // progressDialog.dismiss();
                 Log.e("response", response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -249,7 +189,7 @@ public class TodayMatchFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                       // progressDialog.dismiss();
+                        // progressDialog.dismiss();
                         error.printStackTrace();
                         srlRecycleViewTodayMatch.setRefreshing(false);
                         Toast.makeText(getActivity(), "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show();

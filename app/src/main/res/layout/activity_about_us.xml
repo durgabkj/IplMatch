@@ -24,6 +24,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:fontFamily="sans-serif-light"
         android:padding="20dp"
         android:text="Ipl Hub work to provide you with fast,reliable and accurate cricket updates of all match,news.\n\n
